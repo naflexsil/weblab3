@@ -6,18 +6,16 @@ import TaskList from "./task_list";
 function App() {
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
-    // Загружаем задачи из localStorage, если они существуют
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
 
   useEffect(() => {
-    // Сохраняем обновленное состояние задач в localStorage
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const addTask = (title, desc) => {
     const newTask = {
-      id: Date.now().toString(), // Используем временную метку как уникальный идентификатор
+      id: Date.now().toString(),
       title,
       desc,
     };

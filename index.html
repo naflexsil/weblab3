@@ -4,9 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React To Do</title>
+    <link rel="stylesheet" href="./src/styles/app.css" />
     <script type="module" src="./src/scripts/main.jsx"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="app">
+        <section class="no-tasks">
+          <div class="container">
+            <div class="input-wrapper">
+              <div class="input-group">
+                <input
+                  type="text"
+                  placeholder="Title..."
+                  id="titleInput"
+                  class="task-input title-input"
+                />
+                <input
+                  type="text"
+                  placeholder="About..."
+                  id="descInput"
+                  class="task-input about-input"
+                />
+              </div>
+              <button class="add-task-button" id="addTaskButton">+</button>
+            </div>
+
+            <div class="no-task-message" id="noTaskMessage">
+              <p>No tasks</p>
+            </div>
+
+            <div class="tasks-list container" id="tasksList"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <template id="taskItemTemplate">
+      <div class="task-item">
+        <div class="task-content">
+          <div class="task-title"></div>
+          <div class="task-desc"></div>
+        </div>
+        <button class="delete-task-button">×</button>
+      </div>
+    </template>
   </body>
 </html>
