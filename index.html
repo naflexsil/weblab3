@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React To Do</title>
-    <link rel="stylesheet" href="./src/styles/app.css" />
+    <link rel="stylesheet" href="./src/styles/app.scss" />
     <script type="module" src="./src/scripts/main.jsx"></script>
   </head>
   <body>
@@ -30,24 +30,10 @@
               <button class="add-task-button" id="addTaskButton">+</button>
             </div>
 
-            <div class="no-task-message" id="noTaskMessage">
-              <p>No tasks</p>
-            </div>
-
             <div class="tasks-list container" id="tasksList"></div>
           </div>
         </section>
       </div>
     </div>
-
-    <template id="taskItemTemplate">
-      <div class="task-item">
-        <div class="task-content">
-          <div class="task-title"></div>
-          <div class="task-desc"></div>
-        </div>
-        <button class="delete-task-button">×</button>
-      </div>
-    </template>
   </body>
 </html>

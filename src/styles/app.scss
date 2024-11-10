@@ -1,10 +1,13 @@
 * {
   font-family: "Roboto";
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../src/fonts/Roboto.ttf");
+  src: url("../fonts/Roboto.ttf") format("truetype");
 }
 
 $bg-color: #1b1a17;
@@ -124,6 +127,10 @@ p {
   flex-direction: column;
   gap: 20px;
   width: 100%;
+}
+
+.task-list li {
+  margin-bottom: 20px;
 }
 
 .task-item {

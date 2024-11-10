@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import "../styles/app.scss";
 import TaskInput from "./task_input";
 import TaskList from "./task_list";
+import DeleteModal from "./modals/delete_task_modal";
 
 function App() {
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -22,8 +26,21 @@ function App() {
     setTasks((prevTasks) => [newTask, ...prevTasks]);
   };
 
-  const deleteTask = (id) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+  const openDeleteModal = (taskId) => {
+    setTaskToDelete(taskId);
+    setModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setModalOpen(false);
+    setTaskToDelete(null);
+  };
+
+  const confirmDeleteTask = () => {
+    setTasks((prevTasks) =>
+      prevTasks.filter((task) => task.id !== taskToDelete)
+    );
+    closeDeleteModal();
   };
 
   return (
@@ -36,10 +53,16 @@ function App() {
               <p>No tasks</p>
             </div>
           ) : (
-            <TaskList tasks={tasks} deleteTask={deleteTask} />
+            <TaskList tasks={tasks} onDelete={openDeleteModal} />
           )}
         </div>
       </section>
+
+      <DeleteModal
+        isOpen={isModalOpen}
+        onClose={closeDeleteModal}
+        onConfirm={confirmDeleteTask}
+      />
     </div>
   );
 }

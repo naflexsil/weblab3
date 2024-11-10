@@ -1,13 +1,15 @@
 import React from "react";
 import TaskItem from "./task_item";
 
-function TaskList({ tasks, deleteTask }) {
+function TaskList({ tasks, onDelete }) {
   return (
-    <div className="tasks-list container">
+    <ul className="task-list">
       {tasks.map((task) => (
-        <TaskItem key={task.id} task={task} deleteTask={deleteTask} />
+        <li key={task.id}>
+          <TaskItem task={task} deleteTask={onDelete} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
