@@ -1,0 +1,26 @@
+.interactions-container {
+  display: none;
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 2px solid $hover-border-color;
+  border-radius: 8px;
+  color: $hover-border-color;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.active .interactions-container {
+  display: flex;
+}
+
+.task-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0 5px;
+  cursor: pointer;
+}

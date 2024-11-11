@@ -3,13 +3,16 @@ import TaskItem from "./task_item";
 
 function TaskList({ tasks, onDelete }) {
   return (
-    <ul className="task-list">
+    <div className="task-list">
       {tasks.map((task) => (
-        <li key={task.id}>
-          <TaskItem task={task} deleteTask={onDelete} />
-        </li>
+        <TaskItem
+          key={task.id}
+          title={task.title}
+          desc={task.desc}
+          onDelete={() => onDelete(task.id)}
+        />
       ))}
-    </ul>
+    </div>
   );
 }
 
