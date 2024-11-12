@@ -12,10 +12,18 @@ function TaskItem({ id, title, desc, onDelete }) {
     if (lastActiveTask && lastActiveTask !== taskItemRef.current) {
       lastActiveTask.querySelector(".interactions-container").style.display =
         "none";
+      lastActiveTask.style.marginBottom = "10px";
     }
 
-    setMenuVisible((prevVisible) => !prevVisible);
-    lastActiveTask = isMenuVisible ? null : taskItemRef.current;
+    setMenuVisible((prevVisible) => {
+      const newVisibility = !prevVisible;
+      if (newVisibility) {
+        lastActiveTask = taskItemRef.current;
+      } else {
+        lastActiveTask = null;
+      }
+      return newVisibility;
+    });
   };
 
   useEffect(() => {

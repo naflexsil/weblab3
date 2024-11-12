@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/interactions_buttons.scss";
 
 function InteractionsButtons({ title, desc }) {
   const openInfoModal = () => {

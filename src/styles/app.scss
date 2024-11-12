@@ -128,7 +128,7 @@ p {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    width: 100%;
+    width: calc(100% - 50px);
   }
 }
 
