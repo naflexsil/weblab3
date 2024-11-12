@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import InteractionsButtons from "./interactions_buttons";
-import DeleteTaskButton from "./components/delete_task_button";
+import DeleteTaskButton from "./delete_task_button";
 
 let lastActiveTask = null;
 

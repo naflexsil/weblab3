@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/share_modal.scss";
 
 function ShareModal({ title, desc, onClose }) {
   const copyToClipboard = () => {
