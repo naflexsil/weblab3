@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/app.scss";
+import "../styles/share_modal.scss";
 import TaskInput from "./task_input";
 import TaskList from "./task_list";
 import DeleteModal from "./modals/delete_task_modal";
