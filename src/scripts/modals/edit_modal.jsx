@@ -7,15 +7,7 @@ function EditModal({ task, isOpen, onClose, onSave }) {
 
   const handleSave = () => {
     const updatedTask = { id: task.id, title, description };
-
     onSave(updatedTask);
-
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const updatedTasks = tasks.map((t) =>
-      t.id === updatedTask.id ? updatedTask : t
-    );
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-
     onClose();
   };
 

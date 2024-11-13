@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/app.scss";
 
 import TaskInput from "./components/task_input";
 import TaskList from "./components/task_list";
 import DeleteModal from "./modals/delete_task_modal";
+import useLocalStorage from "../scripts/hooks/local_storage.js";
 
 function App() {
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem("tasks");
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
-
+  const [tasks, setTasks] = useLocalStorage("tasks", []);
   const [isModalOpen, setModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
 
   const addTask = (title, desc) => {
     const newTask = {
