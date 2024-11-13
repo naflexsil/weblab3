@@ -27,6 +27,12 @@ function App() {
     setTasks((prevTasks) => [newTask, ...prevTasks]);
   };
 
+  const updateTask = (updatedTask) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    );
+  };
+
   const openDeleteModal = (taskId) => {
     setTaskToDelete(taskId);
     setModalOpen(true);
@@ -54,7 +60,11 @@ function App() {
               <p>No tasks</p>
             </div>
           ) : (
-            <TaskList tasks={tasks} onDelete={openDeleteModal} />
+            <TaskList
+              tasks={tasks}
+              onDelete={openDeleteModal}
+              onSave={updateTask}
+            />
           )}
         </div>
       </section>

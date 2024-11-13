@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import InteractionsButtons from "./interactions_buttons";
 import DeleteTaskButton from "./delete_task_button";
+import EditModal from "../modals/edit_modal";
 
 let lastActiveTask = null;
 
-function TaskItem({ id, title, desc, onDelete }) {
+function TaskItem({ id, title, desc, onDelete, onSave }) {
   const [isMenuVisible, setMenuVisible] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [taskTitle, setTaskTitle] = useState(title);
+  const [taskDesc, setTaskDesc] = useState(desc);
+
   const taskItemRef = React.useRef(null);
 
   const handleTaskClick = () => {
@@ -36,11 +41,22 @@ function TaskItem({ id, title, desc, onDelete }) {
     }
   }, [isMenuVisible]);
 
+  const handleEdit = () => {
+    setEditModalOpen(true);
+  };
+
+  const handleSave = (updatedTask) => {
+    setTaskTitle(updatedTask.title);
+    setTaskDesc(updatedTask.description);
+    onSave(updatedTask);
+    setEditModalOpen(false);
+  };
+
   return (
     <div className="task-item" ref={taskItemRef} onClick={handleTaskClick}>
       <div className="task-content">
-        <h3 className="task-title">{title}</h3>
-        <p className="task-desc">{desc}</p>
+        <h3 className="task-title">{taskTitle}</h3>
+        <p className="task-desc">{taskDesc}</p>
       </div>
       <div className="delete-task-button">
         <DeleteTaskButton
@@ -51,8 +67,20 @@ function TaskItem({ id, title, desc, onDelete }) {
         />
       </div>
       <div className="interactions-container">
-        <InteractionsButtons title={title} desc={desc} />
+        <InteractionsButtons
+          title={taskTitle}
+          desc={taskDesc}
+          onEdit={handleEdit}
+        />
       </div>
+      {isEditModalOpen && (
+        <EditModal
+          task={{ id, title: taskTitle, desc: taskDesc }}
+          isOpen={isEditModalOpen}
+          onClose={() => setEditModalOpen(false)}
+          onSave={handleSave}
+        />
+      )}
     </div>
   );
 }

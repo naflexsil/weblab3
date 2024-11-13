@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ShareModal from "../modals/share_modal";
 import "../../styles/interactions_buttons.scss";
 
-function InteractionsButtons({ title, desc }) {
+function InteractionsButtons({ title, desc, onEdit }) {
   const [isShareModalOpen, setShareModalOpen] = useState(false);
 
   const openShareModal = () => setShareModalOpen(true);
@@ -26,6 +26,7 @@ function InteractionsButtons({ title, desc }) {
       <img
         src="../src/icons/info.svg"
         className="task-icon"
+        alt="Info"
         onClick={(e) => {
           e.stopPropagation();
           openInfoModal();
@@ -34,7 +35,11 @@ function InteractionsButtons({ title, desc }) {
       <img
         src="../src/icons/edit.svg"
         className="task-icon"
-        onClick={(e) => e.stopPropagation()}
+        alt="Edit"
+        onClick={(e) => {
+          e.stopPropagation();
+          onEdit();
+        }}
       />
       {isShareModalOpen && (
         <ShareModal title={title} desc={desc} onClose={closeShareModal} />
