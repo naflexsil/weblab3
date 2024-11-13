@@ -46,8 +46,10 @@ function TaskItem({ id, title, desc, onDelete, onSave }) {
   };
 
   const handleSave = (updatedTask) => {
+    console.log("task item handle save");
+    console.log(updatedTask);
     setTaskTitle(updatedTask.title);
-    setTaskDesc(updatedTask.description);
+    setTaskDesc(updatedTask.desc);
     onSave(updatedTask);
     setEditModalOpen(false);
   };

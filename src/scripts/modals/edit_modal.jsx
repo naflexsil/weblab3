@@ -3,10 +3,10 @@ import "../../styles/edit_modal.scss";
 
 function EditModal({ task, isOpen, onClose, onSave }) {
   const [title, setTitle] = useState(task.title);
-  const [description, setDescription] = useState(task.desc);
+  const [desc, setDesc] = useState(task.desc);
 
   const handleSave = () => {
-    const updatedTask = { id: task.id, title, description };
+    const updatedTask = { id: task.id, title, desc };
     onSave(updatedTask);
     onClose();
   };
@@ -21,12 +21,12 @@ function EditModal({ task, isOpen, onClose, onSave }) {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Title"
+          placeholder=" Title"
         />
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Description"
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+          placeholder=" Description"
         />
         <div className="modal-buttons">
           <button onClick={handleSave}>Confirm</button>

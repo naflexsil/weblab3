@@ -11,6 +11,8 @@ function App() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
 
+  console.log(tasks);
+
   const addTask = (title, desc) => {
     const newTask = {
       id: Date.now().toString(),
@@ -21,6 +23,7 @@ function App() {
   };
 
   const updateTask = (updatedTask) => {
+    console.log(tasks);
     setTasks((prevTasks) =>
       prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
     );
