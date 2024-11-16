@@ -1,3 +1,5 @@
+@import "variables";
+
 .edit-modal-style {
   display: flex;
   justify-content: center;
@@ -16,10 +18,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #1b1a17;
+    background-color: $bg-color;
     border-radius: 8px;
     text-align: center;
-    color: #f0e3ca;
+    color: $text-color;
     width: 60%;
     max-width: 800px;
     height: auto;
@@ -32,7 +34,7 @@
       display: block;
       height: 4px;
       width: 100%;
-      background-color: #a35709;
+      background-color: $border-color;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
     }
@@ -48,15 +50,15 @@
     textarea {
       resize: none;
       width: 100%;
-      border: 1px solid #a35709;
+      border: 1px solid $border-color;
       border-radius: 4px;
-      background-color: #1f1e1b;
-      color: #f0e3ca;
+      background-color: $input-bg;
+      color: $text-color;
       font-size: 16px;
       margin-top: 10px;
 
       &:focus {
-        border-color: darken(#a35709, 10%);
+        border-color: darken($border-color, 10%);
         outline: none;
       }
     }
@@ -77,14 +79,14 @@
       button {
         margin: 0 5px;
         padding: 10px 20px;
-        border: 2px solid #a35709;
-        background-color: #1f1e1b;
-        color: #f0e3ca;
+        border: 2px solid $border-color;
+        background-color: $input-bg;
+        color: $text-color;
         cursor: pointer;
         border-radius: 4px;
 
         &:hover {
-          border-color: #ff8303;
+          border-color: $hover-border-color;
         }
       }
     }

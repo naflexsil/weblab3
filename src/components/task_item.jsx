@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InteractionsButtons from "../components/interactions_menu";
 import DeleteTaskButton from "../components/delete_task_button";
 import EditModal from "../components/modals/edit_modal.jsx";
@@ -15,9 +15,7 @@ function TaskItem({ id, title, desc, onDelete, onSave }) {
 
   const handleTaskClick = () => {
     if (lastActiveTask && lastActiveTask !== taskItemRef.current) {
-      lastActiveTask.querySelector(".interactions-container").style.display =
-        "none";
-      lastActiveTask.style.marginBottom = "10px";
+      lastActiveTask.setMenuVisible(false);
     }
 
     setMenuVisible((prevVisible) => {
@@ -31,16 +29,6 @@ function TaskItem({ id, title, desc, onDelete, onSave }) {
     });
   };
 
-  useEffect(() => {
-    const buttonContainer = taskItemRef.current.querySelector(
-      ".interactions-container"
-    );
-    if (buttonContainer) {
-      buttonContainer.style.display = isMenuVisible ? "flex" : "none";
-      taskItemRef.current.style.marginBottom = isMenuVisible ? "60px" : "10px";
-    }
-  }, [isMenuVisible]);
-
   const handleEdit = () => {
     setEditModalOpen(true);
   };
@@ -53,7 +41,11 @@ function TaskItem({ id, title, desc, onDelete, onSave }) {
   };
 
   return (
-    <div className="task-item" ref={taskItemRef} onClick={handleTaskClick}>
+    <div
+      className={`task-item ${isMenuVisible ? "active" : ""}`}
+      ref={taskItemRef}
+      onClick={handleTaskClick}
+    >
       <div className="task-content">
         <h3 className="task-title">{taskTitle}</h3>
         <p className="task-desc">{taskDesc}</p>
@@ -66,13 +58,15 @@ function TaskItem({ id, title, desc, onDelete, onSave }) {
           }}
         />
       </div>
-      <div className="interactions-container">
-        <InteractionsButtons
-          title={taskTitle}
-          desc={taskDesc}
-          onEdit={handleEdit}
-        />
-      </div>
+      {isMenuVisible && (
+        <div className="interactions-container">
+          <InteractionsButtons
+            title={taskTitle}
+            desc={taskDesc}
+            onEdit={handleEdit}
+          />
+        </div>
+      )}
       {isEditModalOpen && (
         <EditModal
           task={{ id, title: taskTitle, desc: taskDesc }}

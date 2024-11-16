@@ -1,17 +1,19 @@
+@import "variables";
+
 .delete-task-button {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  border: 2px solid #a35709;
+  border: 2px solid $border-color;
   border-radius: 4px;
-  color: #ff8303;
+  color: $hover-border-color;
   cursor: pointer;
   font-size: 20px;
   width: 32px;
   height: 32px;
 
   &:hover {
-    background-color: #1f1e1b;
+    background-color: $input-bg;
   }
 }

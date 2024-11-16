@@ -1,3 +1,5 @@
+@import "variables";
+
 .info-modal-style {
   display: flex;
   justify-content: center;
@@ -90,6 +92,7 @@
         }
       }
     }
+
     h3 {
       margin: 20px 0;
       color: $text-color;

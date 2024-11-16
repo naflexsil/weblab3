@@ -1,3 +1,5 @@
+@import "variables";
+
 .delete-modal-style {
   display: flex;
   justify-content: center;
@@ -9,15 +11,17 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.734);
+
   .delete-modal-content {
     padding: 20px;
     position: relative;
-    background-color: #1b1a17;
+    background-color: $bg-color;
     border-radius: 8px;
     text-align: center;
-    color: #f0e3ca;
+    color: $text-color;
     width: 50%;
     max-width: 600px;
+
     &::before {
       position: absolute;
       top: 0;
@@ -26,24 +30,27 @@
       display: block;
       height: 4px;
       width: 100%;
-      background-color: #a35709;
+      background-color: $border-color;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
     }
+
     .modal-buttons {
       margin-top: 10px;
       display: flex;
       justify-content: center;
+
       button {
         margin: 0 5px;
         padding: 10px 20px;
-        border: 2px solid #a35709;
-        background-color: #1f1e1b;
-        color: #f0e3ca;
+        border: 2px solid $border-color;
+        background-color: $input-bg;
+        color: $text-color;
         cursor: pointer;
         border-radius: 4px;
+
         &:hover {
-          border-color: #ff8303;
+          border-color: $hover-border-color;
         }
       }
     }

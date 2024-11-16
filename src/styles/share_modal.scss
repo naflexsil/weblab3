@@ -1,3 +1,5 @@
+@import "variables";
+
 .share-modal-style {
   display: flex;
   justify-content: center;
@@ -16,7 +18,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #1b1a17;
+    background-color: $bg-color;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     width: 25%;
@@ -30,7 +32,7 @@
       display: block;
       height: 4px;
       width: 100%;
-      background-color: #a35709;
+      background-color: $border-color;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
     }

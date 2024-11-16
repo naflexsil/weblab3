@@ -1,4 +1,4 @@
-@import "./app.scss";
+@import "variables";
 
 .interactions-container {
   display: none;
@@ -23,7 +23,8 @@
   border: 2px solid $border-color;
   border-radius: 8px;
   padding: 5px;
+
   &:hover {
-    border-color: #ff8303;
+    border-color: $hover-border-color;
   }
 }
