@@ -26,19 +26,19 @@ function ShareModal({ title, desc, onClose }) {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="share-icons">
           <img
-            src="src/icons/copy.svg"
+            src="../src/images/icons/copy.svg"
             alt="Copy"
             title="Copy"
             onClick={copyToClipboard}
           />
           <img
-            src="src/icons/vk.svg"
+            src="../src/images/icons/vk.svg"
             alt="VK"
             title="Share on VK"
             onClick={() => window.open("https://vk.com", "_blank")}
           />
           <img
-            src="src/icons/tg.svg"
+            src="../src/images/icons/tg.svg"
             alt="Telegram"
             title="Share on Telegram"
             onClick={() =>
@@ -46,7 +46,7 @@ function ShareModal({ title, desc, onClose }) {
             }
           />
           <img
-            src="src/icons/wh.svg"
+            src="../src/images/icons/wh.svg"
             alt="WhatsApp"
             title="Share on WhatsApp"
             onClick={() =>
@@ -54,7 +54,7 @@ function ShareModal({ title, desc, onClose }) {
             }
           />
           <img
-            src="src/icons/f.svg"
+            src="../src/images/icons/f.svg"
             alt="Facebook"
             title="Share on Facebook"
             onClick={() => window.open("https://facebook.com", "_blank")}

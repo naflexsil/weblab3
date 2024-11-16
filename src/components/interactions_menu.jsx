@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import ShareModal from "./modals/share_modal";
+import InfoModal from "./modals/info_modal";
 import "../styles/interactions_menu.scss";
 
 function InteractionsButtons({ title, desc, onEdit }) {
   const [isShareModalOpen, setShareModalOpen] = useState(false);
+  const [isInfoModalOpen, setInfoModalOpen] = useState(false);
 
   const openShareModal = () => setShareModalOpen(true);
   const closeShareModal = () => setShareModalOpen(false);
 
-  const openInfoModal = () => {
-    alert(`Title: ${title}\nDescription: ${desc}`);
-  };
+  const openInfoModal = () => setInfoModalOpen(true);
+  const closeInfoModal = () => setInfoModalOpen(false);
 
   return (
     <div className="task-buttons-container">
       <img
-        src="../src/icons/share.svg"
+        src="../src/images/icons/share.svg"
         className="task-icon"
         alt="Share"
         onClick={(e) => {
@@ -24,7 +25,7 @@ function InteractionsButtons({ title, desc, onEdit }) {
         }}
       />
       <img
-        src="../src/icons/info.svg"
+        src="../src/images/icons/info.svg"
         className="task-icon"
         alt="Info"
         onClick={(e) => {
@@ -33,7 +34,7 @@ function InteractionsButtons({ title, desc, onEdit }) {
         }}
       />
       <img
-        src="../src/icons/edit.svg"
+        src="../src/images/icons/edit.svg"
         className="task-icon"
         alt="Edit"
         onClick={(e) => {
@@ -44,6 +45,7 @@ function InteractionsButtons({ title, desc, onEdit }) {
       {isShareModalOpen && (
         <ShareModal title={title} desc={desc} onClose={closeShareModal} />
       )}
+      {isInfoModalOpen && <InfoModal onClose={closeInfoModal} />}
     </div>
   );
 }
