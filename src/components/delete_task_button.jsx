@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/delete_task_button.scss";
+import "../styles/delete_task_button.scss";
 
 function DeleteTaskButton({ onClick }) {
   return (

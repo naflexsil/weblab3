@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import "../styles/app.scss";
+import "../src/styles/app.scss";
 
-import TaskInput from "./components/task_input";
-import TaskList from "./components/task_list";
-import DeleteModal from "./modals/delete_task_modal";
-import useLocalStorage from "../scripts/hooks/local_storage.js";
+import TaskInput from "../src/components/task_input.jsx";
+import TaskList from "../src/components/task_list.jsx";
+import DeleteModal from "../src/components/modals/delete_task_modal.jsx";
+import useLocalStorage from "../src/components/hooks/useLocalStorage.js";
 
 function App() {
   const [tasks, setTasks] = useLocalStorage("tasks", []);
   const [isModalOpen, setModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
-
-  console.log(tasks);
 
   const addTask = (title, desc) => {
     const newTask = {
@@ -23,7 +21,6 @@ function App() {
   };
 
   const updateTask = (updatedTask) => {
-    console.log(tasks);
     setTasks((prevTasks) =>
       prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
     );

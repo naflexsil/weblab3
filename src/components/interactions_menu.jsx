@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ShareModal from "../modals/share_modal";
-import "../../styles/interactions_buttons.scss";
+import ShareModal from "./modals/share_modal";
+import "../styles/interactions_menu.scss";
 
 function InteractionsButtons({ title, desc, onEdit }) {
   const [isShareModalOpen, setShareModalOpen] = useState(false);

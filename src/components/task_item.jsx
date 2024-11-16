@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import InteractionsButtons from "./interactions_buttons";
-import DeleteTaskButton from "./delete_task_button";
-import EditModal from "../modals/edit_modal";
+import InteractionsButtons from "../components/interactions_menu";
+import DeleteTaskButton from "../components/delete_task_button";
+import EditModal from "../components/modals/edit_modal.jsx";
 
 let lastActiveTask = null;
 
@@ -46,8 +46,6 @@ function TaskItem({ id, title, desc, onDelete, onSave }) {
   };
 
   const handleSave = (updatedTask) => {
-    console.log("task item handle save");
-    console.log(updatedTask);
     setTaskTitle(updatedTask.title);
     setTaskDesc(updatedTask.desc);
     onSave(updatedTask);
