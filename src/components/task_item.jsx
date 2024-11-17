@@ -5,7 +5,7 @@ import EditModal from "../components/modals/edit_modal.jsx";
 
 let lastActiveTask = null;
 
-function TaskItem({ id, title, desc, onDelete, onSave }) {
+function TaskItem({ id, title, desc, index, onDelete, onSave, onDragStart }) {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [taskTitle, setTaskTitle] = useState(title);
@@ -44,6 +44,8 @@ function TaskItem({ id, title, desc, onDelete, onSave }) {
     <div
       className={`task-item ${isMenuVisible ? "active" : ""}`}
       ref={taskItemRef}
+      draggable
+      onDragStart={(e) => onDragStart(e)}
       onClick={handleTaskClick}
     >
       <div className="task-content">

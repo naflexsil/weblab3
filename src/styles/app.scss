@@ -107,6 +107,11 @@ p {
   }
 }
 
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .task-item {
   padding: 10px;
   display: flex;
@@ -118,15 +123,36 @@ p {
   border: 2px solid $border-color;
   border-radius: 8px;
   margin-bottom: 10px;
-  transition: margin 0.3s ease;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: grab;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &.active {
     margin-bottom: 60px;
+    cursor: grabbing;
+  }
+
+  .task-item.dragging {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
 
   .interactions-container {
     display: flex;
     gap: 10px;
+    position: absolute;
+    top: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .task-item.active .interactions-container {
+    margin-top: 10px;
+    border: $hover-border-color;
   }
 
   .task-content {
