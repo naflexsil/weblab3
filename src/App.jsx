@@ -1,45 +1,44 @@
 import React, { useState } from "react";
-import TaskInput from "../src/components/task_input.jsx";
-import DraggableTaskList from "../src/components/draggable_task_list.jsx";
-import DeleteModal from "../src/components/modals/delete_task_modal.jsx";
-import useLocalStorage from "../src/components/hooks/useLocalStorage.js";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addTask,
+  updateTask,
+  deleteTask,
+  moveTask,
+} from "../src/components/redux/tasks_slice.js";
+import TaskInput from "./components/task_input.jsx";
+import DraggableTaskList from "./components/draggable_task_list.jsx";
+import DeleteModal from "./components/modals/delete_task_modal.jsx";
 
 function App() {
-  const [tasks, setTasks] = useLocalStorage("tasks", []);
+  const tasks = useSelector((state) => state.tasks.tasks);
+  const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [draggedIndex, setDraggedIndex] = useState(null);
 
-  const addTask = (title, desc) => {
+  const handleAddTask = (title, desc) => {
     const newTask = {
       id: Date.now().toString(),
       title,
       desc,
     };
-    setTasks((prevTasks) => [newTask, ...prevTasks]);
+    dispatch(addTask(newTask));
   };
 
-  const updateTask = (updatedTask) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
-    );
+  const handleUpdateTask = (updatedTask) => {
+    dispatch(updateTask(updatedTask));
   };
 
-  const openDeleteModal = (taskId) => {
+  const handleOpenDeleteModal = (taskId) => {
     setTaskToDelete(taskId);
     setModalOpen(true);
   };
 
-  const closeDeleteModal = () => {
+  const handleConfirmDeleteTask = () => {
+    dispatch(deleteTask(taskToDelete));
     setModalOpen(false);
     setTaskToDelete(null);
-  };
-
-  const confirmDeleteTask = () => {
-    setTasks((prevTasks) =>
-      prevTasks.filter((task) => task.id !== taskToDelete)
-    );
-    closeDeleteModal();
   };
 
   const handleDragStart = (e, index) => {
@@ -49,12 +48,7 @@ function App() {
 
   const handleDrop = (e, index) => {
     const draggedIndex = e.dataTransfer.getData("index");
-    const updatedTasks = Array.from(tasks);
-
-    const draggedTask = updatedTasks.splice(draggedIndex, 1)[0];
-    updatedTasks.splice(index, 0, draggedTask);
-
-    setTasks(updatedTasks);
+    dispatch(moveTask({ fromIndex: +draggedIndex, toIndex: index }));
     setDraggedIndex(null);
   };
 
@@ -66,7 +60,7 @@ function App() {
     <div className="app">
       <section className="no-tasks">
         <div className="container">
-          <TaskInput addTask={addTask} />
+          <TaskInput addTask={handleAddTask} />
           {tasks.length === 0 ? (
             <div className="no-task-message">
               <p>No tasks</p>
@@ -74,8 +68,8 @@ function App() {
           ) : (
             <DraggableTaskList
               tasks={tasks}
-              onDelete={openDeleteModal}
-              onSave={updateTask}
+              onDelete={handleOpenDeleteModal}
+              onSave={handleUpdateTask}
               onDragStart={handleDragStart}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
@@ -86,8 +80,8 @@ function App() {
 
       <DeleteModal
         isOpen={isModalOpen}
-        onClose={closeDeleteModal}
-        onConfirm={confirmDeleteTask}
+        onClose={() => setModalOpen(false)}
+        onConfirm={handleConfirmDeleteTask}
       />
     </div>
   );
