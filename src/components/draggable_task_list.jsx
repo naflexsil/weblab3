@@ -1,5 +1,5 @@
 import React from "react";
-import TaskItem from "./task_item";
+import TaskItem from "../components/task_item";
 
 function DraggableTaskList({
   tasks,
