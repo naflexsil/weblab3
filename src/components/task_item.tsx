@@ -3,36 +3,49 @@ import InteractionsButtons from "../components/interactions_menu";
 import DeleteTaskButton from "../components/delete_task_button";
 import EditModal from "../components/modals/edit_modal.jsx";
 
-let lastActiveTask: any = null;
+interface Task {
+  id: string;
+  title: string;
+  desc: string;
+}
+
+interface TaskItemProps {
+  id: string;
+  title: string;
+  desc: string;
+  index?: number;
+  onDelete: () => void;
+  onSave: (task: Task) => void;
+  onDragStart: (event: React.DragEvent<HTMLDivElement>) => void;
+}
+
+let lastSetMenuVisible: React.Dispatch<React.SetStateAction<boolean>> | null =
+  null;
 
 function TaskItem({
   id,
   title,
   desc,
-  // @ts-expect-error TS(6133): 'index' is declared but its value is never read.
-  index,
   onDelete,
   onSave,
-  onDragStart
-}: any) {
+  onDragStart,
+}: TaskItemProps) {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [taskTitle, setTaskTitle] = useState(title);
   const [taskDesc, setTaskDesc] = useState(desc);
 
-  const taskItemRef = React.useRef(null);
-
   const handleTaskClick = () => {
-    if (lastActiveTask && lastActiveTask !== taskItemRef.current) {
-      lastActiveTask.setMenuVisible(false);
+    if (lastSetMenuVisible && lastSetMenuVisible !== setMenuVisible) {
+      lastSetMenuVisible(false);
     }
 
     setMenuVisible((prevVisible) => {
       const newVisibility = !prevVisible;
       if (newVisibility) {
-        lastActiveTask = taskItemRef.current;
+        lastSetMenuVisible = setMenuVisible;
       } else {
-        lastActiveTask = null;
+        lastSetMenuVisible = null;
       }
       return newVisibility;
     });
@@ -42,7 +55,7 @@ function TaskItem({
     setEditModalOpen(true);
   };
 
-  const handleSave = (updatedTask: any) => {
+  const handleSave = (updatedTask: Task) => {
     setTaskTitle(updatedTask.title);
     setTaskDesc(updatedTask.desc);
     onSave(updatedTask);
@@ -52,7 +65,6 @@ function TaskItem({
   return (
     <div
       className={`task-item ${isMenuVisible ? "active" : ""}`}
-      ref={taskItemRef}
       draggable
       onDragStart={(e) => onDragStart(e)}
       onClick={handleTaskClick}
@@ -63,7 +75,7 @@ function TaskItem({
       </div>
       <div className="delete-task-button">
         <DeleteTaskButton
-          onClick={(e: any) => {
+          onClick={(e: React.MouseEvent) => {
             e.stopPropagation();
             onDelete();
           }}

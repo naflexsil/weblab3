@@ -1,8 +1,10 @@
 import js from '@eslint/js'
 import globals from 'globals'
 import react from 'eslint-plugin-react'
+
 // @ts-expect-error TS(7016): Could not find a declaration file for module 'esli... Remove this comment to see the full error message
 import reactHooks from 'eslint-plugin-react-hooks'
+
 // @ts-expect-error TS(7016): Could not find a declaration file for module 'esli... Remove this comment to see the full error message
 import reactRefresh from 'eslint-plugin-react-refresh'
 
