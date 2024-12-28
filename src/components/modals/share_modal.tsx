@@ -1,7 +1,11 @@
 import React from "react";
 import "../../styles/share_modal.scss";
 
-function ShareModal({ title, desc, onClose }) {
+function ShareModal({
+  title,
+  desc,
+  onClose
+}: any) {
   const copyToClipboard = () => {
     const textToCopy = `${title}\n${desc}`;
     navigator.clipboard
@@ -15,7 +19,7 @@ function ShareModal({ title, desc, onClose }) {
       });
   };
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e: any) => {
     if (e.target.className === "share-modal-style") {
       onClose();
     }

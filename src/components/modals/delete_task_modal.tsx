@@ -1,7 +1,11 @@
 import React from "react";
 import "../../styles/delete_task_modal.scss";
 
-function DeleteModal({ isOpen, onClose, onConfirm }) {
+function DeleteModal({
+  isOpen,
+  onClose,
+  onConfirm
+}: any) {
   if (!isOpen) return null;
 
   return (

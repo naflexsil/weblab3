@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "../../styles/edit_modal.scss";
 
-function EditModal({ task, isOpen, onClose, onSave }) {
+function EditModal({
+  task,
+  isOpen,
+  onClose,
+  onSave
+}: any) {
   const [title, setTitle] = useState(task.title);
   const [desc, setDesc] = useState(task.desc);
 

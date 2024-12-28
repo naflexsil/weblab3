@@ -3,9 +3,18 @@ import InteractionsButtons from "../components/interactions_menu";
 import DeleteTaskButton from "../components/delete_task_button";
 import EditModal from "../components/modals/edit_modal.jsx";
 
-let lastActiveTask = null;
+let lastActiveTask: any = null;
 
-function TaskItem({ id, title, desc, index, onDelete, onSave, onDragStart }) {
+function TaskItem({
+  id,
+  title,
+  desc,
+  // @ts-expect-error TS(6133): 'index' is declared but its value is never read.
+  index,
+  onDelete,
+  onSave,
+  onDragStart
+}: any) {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [taskTitle, setTaskTitle] = useState(title);
@@ -33,7 +42,7 @@ function TaskItem({ id, title, desc, index, onDelete, onSave, onDragStart }) {
     setEditModalOpen(true);
   };
 
-  const handleSave = (updatedTask) => {
+  const handleSave = (updatedTask: any) => {
     setTaskTitle(updatedTask.title);
     setTaskDesc(updatedTask.desc);
     onSave(updatedTask);
@@ -54,7 +63,7 @@ function TaskItem({ id, title, desc, index, onDelete, onSave, onDragStart }) {
       </div>
       <div className="delete-task-button">
         <DeleteTaskButton
-          onClick={(e) => {
+          onClick={(e: any) => {
             e.stopPropagation();
             onDelete();
           }}

@@ -1,7 +1,9 @@
 import React from "react";
 import "../../styles/info_modal.scss";
 
-function InfoModal({ onClose }) {
+function InfoModal({
+  onClose
+}: any) {
   return (
     <div className="info-modal-style">
       <div className="info-modal-content">

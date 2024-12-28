@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-function TaskInput({ addTask }) {
+function TaskInput({
+  addTask
+}: any) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
 

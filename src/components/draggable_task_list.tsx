@@ -7,11 +7,11 @@ function DraggableTaskList({
   onSave,
   onDragStart,
   onDrop,
-  onDragOver,
-}) {
+  onDragOver
+}: any) {
   return (
     <div className="task-list" onDragOver={onDragOver} onDrop={onDrop}>
-      {tasks.map((task, index) => (
+      {tasks.map((task: any, index: any) => (
         <TaskItem
           key={task.id}
           id={task.id}
@@ -20,7 +20,7 @@ function DraggableTaskList({
           index={index}
           onDelete={() => onDelete(task.id)}
           onSave={onSave}
-          onDragStart={(e) => onDragStart(e, index)}
+          onDragStart={(e: any) => onDragStart(e, index)}
         />
       ))}
     </div>

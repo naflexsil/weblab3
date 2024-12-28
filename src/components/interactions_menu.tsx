@@ -3,7 +3,11 @@ import ShareModal from "./modals/share_modal";
 import InfoModal from "./modals/info_modal";
 import "../styles/interactions_menu.scss";
 
-function InteractionsButtons({ title, desc, onEdit }) {
+function InteractionsButtons({
+  title,
+  desc,
+  onEdit
+}: any) {
   const [isShareModalOpen, setShareModalOpen] = useState(false);
   const [isInfoModalOpen, setInfoModalOpen] = useState(false);
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// @ts-expect-error TS(2307): Cannot find module 'react-redux' or its correspond... Remove this comment to see the full error message
 import { useSelector, useDispatch } from "react-redux";
 import {
   addTask,
@@ -11,13 +12,14 @@ import DraggableTaskList from "./components/draggable_task_list.jsx";
 import DeleteModal from "./components/modals/delete_task_modal.jsx";
 
 function App() {
-  const tasks = useSelector((state) => state.tasks.tasks);
+  const tasks = useSelector((state: any) => state.tasks.tasks);
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
+  // @ts-expect-error TS(6133): 'draggedIndex' is declared but its value is never ... Remove this comment to see the full error message
   const [draggedIndex, setDraggedIndex] = useState(null);
 
-  const handleAddTask = (title, desc) => {
+  const handleAddTask = (title: any, desc: any) => {
     const newTask = {
       id: Date.now().toString(),
       title,
@@ -26,11 +28,11 @@ function App() {
     dispatch(addTask(newTask));
   };
 
-  const handleUpdateTask = (updatedTask) => {
+  const handleUpdateTask = (updatedTask: any) => {
     dispatch(updateTask(updatedTask));
   };
 
-  const handleOpenDeleteModal = (taskId) => {
+  const handleOpenDeleteModal = (taskId: any) => {
     setTaskToDelete(taskId);
     setModalOpen(true);
   };
@@ -41,18 +43,18 @@ function App() {
     setTaskToDelete(null);
   };
 
-  const handleDragStart = (e, index) => {
+  const handleDragStart = (e: any, index: any) => {
     setDraggedIndex(index);
     e.dataTransfer.setData("index", index);
   };
 
-  const handleDrop = (e, index) => {
+  const handleDrop = (e: any, index: any) => {
     const draggedIndex = e.dataTransfer.getData("index");
     dispatch(moveTask({ fromIndex: +draggedIndex, toIndex: index }));
     setDraggedIndex(null);
   };
 
-  const handleDragOver = (e) => {
+  const handleDragOver = (e: any) => {
     e.preventDefault();
   };
 
